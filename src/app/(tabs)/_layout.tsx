@@ -1,8 +1,9 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Link, Tabs } from 'expo-router';
-import { Pressable, useColorScheme } from 'react-native';
-
+import { Pressable, useColorScheme, View } from "react-native";
+import Player from '../../components/Player';
 import Colors from '../../constants/Colors';
+import { BottomTabBar } from "@react-navigation/bottom-tabs";
 
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
@@ -15,6 +16,7 @@ function TabBarIcon(props: {
 }
 
 export default function TabLayout() {
+
   const colorScheme = useColorScheme();
 
   return (
@@ -22,6 +24,12 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
       }}
+      tabBar={(props) => (
+        <View>
+          <Player />
+          <BottomTabBar {...props} />
+        </View>
+      )}
     >
       <Tabs.Screen
         name="index"

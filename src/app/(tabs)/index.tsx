@@ -1,3 +1,4 @@
+import React from "react";
 import { StyleSheet, FlatList } from "react-native";
 import { tracks } from "../../../assets/data/tracks";
 import TrackListItem from "../../components/TrackListItem";
@@ -7,6 +8,7 @@ export default function TabOneScreen() {
     <FlatList
       data={tracks}
       renderItem={({ item }) => <TrackListItem track={item} />}
+      showsVerticalScrollIndicator={false}
     />
   );
 }
