@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, Pressable, Image } from "react-native";
 import React from 'react';
 import { Track } from '../types';
+import { usePlayerContext } from "../providers/PlayerProvider";
 
 
 type TrackListItemProps = {
@@ -8,6 +9,9 @@ type TrackListItemProps = {
 }
 
 export default function TrackListItem({ track }: TrackListItemProps) {
+
+  const { setTrack } = usePlayerContext();
+
   return (
     <Pressable onPress={() => setTrack(track)} style={styles.container}>
       <Image
