@@ -1,0 +1,49 @@
+ 
+
+Invoke-RestMethod -Uri "https://accounts.spotify.com/api/token" -Method POST `
+     -Headers @{"Content-Type"="application/x-www-form-urlencoded"} `
+     -Body "grant_type=client_credentials&client_id=9ff893e0b8a84a27846533199a9b7370&client_secret=cd39d51d34e74734aedbeacaf824ff59"
+
+
+Access Token: BQABng9jqngUxiLQVGcaRNtK5PyAB4E0acAXPORBWv_x5DCMprF1PcRzzc3jLde1bN3o7Kd2m2XRw6MQPJXgYVzu6U_otG_9nVwO0aKSGU-ZB4V1hHc
+
+
+Invoke-RestMethod -Uri "https://api.spotify.com/v1/artists/4Z8W4fKeB5YxbusRsdQVPb" -Method Get `
+     -Headers @{
+        "Authorization" = "Bearer BQABng9jqngUxiLQVGcaRNtK5PyAB4E0acAXPORBWv_x5DCMprF1PcRzzc3jLde1bN3o7Kd2m2XRw6MQPJXgYVzu6U_otG_9nVwO0aKSGU-ZB4V1hHc"
+     }
+
+
+    
+
+Invoke-RestMethod -Uri "https://api.spotify.com/v1/recommendations?seed_genres=pop" -Method Get `
+     -Headers @{
+        "Authorization" = "Bearer  BQABng9jqngUxiLQVGcaRNtK5PyAB4E0acAXPORBWv_x5DCMprF1PcRzzc3jLde1bN3o7Kd2m2XRw6MQPJXgYVzu6U_otG_9nVwO0aKSGU-ZB4V1hHc"
+     } | ConvertTo-Json | Out-File -FilePath "recommendations.json"
+
+
+
+stepzen import `
+        curl "https://api.spotify.com/v1/recommendations?seed_genres=pop" `
+        -header "Authorization: Bearer BQABng9jqngUxiLQVGcaRNtK5PyAB4E0acAXPORBWv_x5DCMprF1PcRzzc3jLde1bN3o7Kd2m2XRw6MQPJXgYVzu6U_otG_9nVwO0aKSGU-ZB4V1hHc" \
+        -query-name "recommendations" `
+        -query-type "Recommendation" `
+        -name "recommendations" `
+        -prefix "Recommend"
+
+
+
+
+
+      "search/index.graphql"
+      "track/index.graphql"
+      "postgresql/index.graphql"
+
+
+      stepzen import `
+        curl -X POST "https://accounts.spotify.com/api/token" `
+        -header "Content-Type: application/x-www-form-urlencoded" `
+        -data "grant_type=client_credentials&client_id=9ff893e0b8a84a27846533199a9b7370&client_secret=cd39d51d34e74734aedbeacaf824ff59" `
+        -query-name "getToken" `
+        -query-type "TokenResponse" `
+        -name "auth"
