@@ -35,8 +35,8 @@ stepzen import `
 
 
 
-      "search/index.graphql"
-      "track/index.graphql"
+     
+     
       "postgresql/index.graphql"
 
 
